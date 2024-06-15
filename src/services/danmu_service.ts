@@ -12,3 +12,9 @@ export async function getDanmuCountByRoomid(roomid: number) {
     const result = rows as mysql.RowDataPacket[]
     return result[0].count;
 }
+
+export async function getDanmuCountByRoomidPeriod(roomid: number, period: string) {
+    const [rows] = await pool.query('SELECT COUNT(*) AS count FROM danmu_infos WHERE roomid = ? AND created_at >= NOW() - INTERVAL ? DAY', [roomid, period]);
+    const result = rows as mysql.RowDataPacket[]
+    return result[0].count;
+}
