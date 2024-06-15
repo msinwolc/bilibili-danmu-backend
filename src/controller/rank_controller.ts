@@ -51,7 +51,7 @@ export async function getRankInfo(req: Request, resp: Response) {
 export async function getRankInfoByPeriod(req: Request, resp: Response) {
     try {
         const rooms = await getAllRooms();
-        const period = String(req.query['period']);
+        const period = String(req.params.period);
         let roomInfos = [];
         for (const room of rooms) {
             let roomid = Number(room.roomid);
